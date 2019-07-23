@@ -1,0 +1,44 @@
+#!/usr/bin/python3
+"""
+Python Practical Template
+Keegan Crankshaw
+Readjust this Docstring as follows:
+Names:  Declan Molloy
+Student Number: MLLDEC001
+Prac: 1
+Date:  04/08/2019
+"""
+
+# import Relevant Librares
+import RPi.GPIO as GPIO
+import itertools
+import time
+
+# Logic that you write
+counter = 0
+countValues =list(itertools.product([0,1],repeat=3))  #creates a list of increments in binary
+def main():
+	#GPIO setup
+	inputs = [16,18]
+	outputs = [11,13,15]
+	GPIO.setmode(GPIO.BOARD) #puts the pin in output mode
+	GPIO.setup(inputs,GPIO.IN, pull_up_down =GPIO.PUD_UP)
+
+    print("write your logic here")
+
+
+# Only run the functions if 
+if __name__ == "__main__":
+    # Make sure the GPIO is stopped correctly
+    try:
+	GPIO.setwarnings(False)
+        while True:
+            main()
+    except KeyboardInterrupt:
+        print("Exiting gracefully")
+        # Turn off your GPIOs here
+        GPIO.cleanup()
+    except Exception as e:
+        GPIO.cleanup()
+        print("Some other error occurred")
+        print(e.message)
