@@ -20,11 +20,11 @@ counter = 0 #counter used for display updating
 
 def main():
 	#GPIO setup
-	inputs = [16,18]
-	outputs = [11,13,15]
+	inputPins = [16,18] #allows for modular design
+	outputPins = [11,13,15]
 	GPIO.setmode(GPIO.BOARD)
-	GPIO.setup(outputs, GPIO.OUT) #selects the pins for output mode
-	GPIO.setup(inputs,GPIO.IN, pull_up_down =GPIO.PUD_UP) #selects which pins are inputs
+	GPIO.setup(outputPins, GPIO.OUT) #selects the pins for output mode
+	GPIO.setup(inputPins,GPIO.IN, pull_up_down =GPIO.PUD_UP) #selects which pins are inputs
 	#interupt detectors for buttons being pressed
 	GPIO.add_event_detect(16, GPIO.FALLING, callback=increment, bouncetime=250)
 	GPIO.add_event_detect(18, GPIO.FALLING, callback=decrement, bouncetime=250)
@@ -32,7 +32,7 @@ def main():
 	#infinite loop
 	while True:
 		update()
-		time.sleep(0.5)
+		time.sleep(0.4)
 
 #main function
 def update():
